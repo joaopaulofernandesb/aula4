@@ -1,12 +1,20 @@
 
 -- Estrutura da tabela `cidade`
-
+--
 
 CREATE TABLE `cidade` (
   `id_cidade` int(11) NOT NULL,
   `nome` varchar(90) NOT NULL,
   `uf` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cidade`
+--
+
+INSERT INTO `cidade` (`id_cidade`, `nome`, `uf`) VALUES
+(1, 'Maringa', 'PR'),
+(2, 'Maringá', 'PR');
 
 -- --------------------------------------------------------
 
@@ -20,6 +28,13 @@ CREATE TABLE `cliente` (
   `cpf` int(11) NOT NULL,
   `id_endereco` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `nome`, `cpf`, `id_endereco`) VALUES
+(2, 'Lucas da Silva', 11100011, 2);
 
 -- --------------------------------------------------------
 
@@ -35,6 +50,14 @@ CREATE TABLE `endereco` (
   `cep` varchar(90) NOT NULL,
   `id_cidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `endereco`
+--
+
+INSERT INTO `endereco` (`id_endereco`, `rua`, `numero`, `complemetno`, `cep`, `id_cidade`) VALUES
+(1, 'Rua Teste', 1703, 'Casa', '87010789', 1),
+(2, 'Rua Teste Nova', 1789, 'Apto 1203', '87005010', 2);
 
 -- --------------------------------------------------------
 
@@ -54,6 +77,13 @@ CREATE TABLE `recibo` (
   `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `recibo`
+--
+
+INSERT INTO `recibo` (`id_recibo`, `sequencia`, `valor`, `data`, `assinatura`, `referente`, `id_cidade`, `id_usuario`, `id_cliente`) VALUES
+(1, 1, 45, '2019-03-18', 'teste', 'Compra de Mercado', 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -68,6 +98,13 @@ CREATE TABLE `usuario` (
   `cpf` varchar(11) NOT NULL,
   `id_endereco` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `login`, `senha`, `cpf`, `id_endereco`) VALUES
+(1, 'Usuario da Silva', 'user0', '123user', '00000000000', 1);
 
 --
 -- Indexes for dumped tables
@@ -117,31 +154,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `cidade`
 --
 ALTER TABLE `cidade`
-  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `recibo`
 --
 ALTER TABLE `recibo`
-  MODIFY `id_recibo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_recibo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -173,4 +210,3 @@ ALTER TABLE `recibo`
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_endereco`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
-
