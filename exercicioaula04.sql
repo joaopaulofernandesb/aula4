@@ -1,9 +1,6 @@
 
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `cidade`
---
+
 
 CREATE TABLE `cidade` (
   `id_cidade` int(11) NOT NULL,
